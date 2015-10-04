@@ -165,9 +165,6 @@ abstract class Classifier[T, K <: AnyRef] extends IFeatureProbability[T, K] {
    */
   def categoryCount(category: K): Int = totalCategoryCount.getOrElse(category, 0)
 
-  /**
-   * {@inheritDoc}
-   */
   override def featureProbability(feature: T, category: K): Float = {
     categoryCount(category) match {
       case 0 => 0
