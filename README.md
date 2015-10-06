@@ -31,9 +31,9 @@ val unknownText2 = "Today's weather is snow".split(" ")
 val unknownText3 = "I will vote for that party".split(" ")
 
 // Classify
-bayes.classify(unknownText1).map(_.category) must beSome("technology")
-bayes.classify(unknownText2).map(_.category) must beSome("weather")
-bayes.classify(unknownText3).map(_.category) must beSome("government")
+println(bayes.classify(unknownText1).map(_.category).getOrElse("")) // technology
+println(bayes.classify(unknownText2).map(_.category).getOrElse("")) // weather
+println(bayes.classify(unknownText3).map(_.category).getOrElse("")) // government
 ```
 
 ## Contribution
