@@ -108,7 +108,7 @@ abstract class Classifier[T, K <: AnyRef] extends IFeatureProbability[T, K] {
     } {
       if (count == 1) {
         features.remove(feature)
-        if (features.size == 0) {
+        if (features.isEmpty) {
           featureCountPerCategory.remove(category)
         }
       } else {
