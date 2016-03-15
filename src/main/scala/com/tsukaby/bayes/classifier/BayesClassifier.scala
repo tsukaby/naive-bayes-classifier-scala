@@ -37,7 +37,7 @@ class BayesClassifier[T, K <: AnyRef] extends Classifier[T, K] {
   private val ordering = new Ordering[Classification[T, K]] {
     override def compare(o1: Classification[T, K], o2: Classification[T, K]): Int = {
       var toReturn = o1.probability.compare(o2.probability)
-      if ((toReturn == 0) && !(o1.category == o2.category)) toReturn = -1
+      if (toReturn == 0 && (o1.category != o2.category)) toReturn = -1
       toReturn
     }
   }
@@ -64,8 +64,8 @@ class BayesClassifier[T, K <: AnyRef] extends Classifier[T, K] {
    * @return The category the set of features is classified as.
    */
   override def classify(features: Traversable[T]): Option[Classification[T, K]] = {
-    val probabilites: SortedSet[Classification[T, K]] = categoryProbabilities(features)
-    probabilites.lastOption
+    val probabilities: SortedSet[Classification[T, K]] = categoryProbabilities(features)
+    probabilities.lastOption
   }
 
   /**
