@@ -4,7 +4,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "com.tsukaby",
     name := "naive-bayes-classifier-scala",
-    version := "0.1.0",
+    version := "0.1.1",
     scalaVersion := "2.11.8",
     libraryDependencies ++= Seq(
       "org.specs2" %% "specs2-core" % "3.7.2" % "test"
