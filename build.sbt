@@ -5,16 +5,17 @@ lazy val root = (project in file(".")).
     organization := "com.tsukaby",
     name := "naive-bayes-classifier-scala",
     version := "0.1.1",
-    scalaVersion := "2.11.8",
+    scalaVersion := "2.12.4",
+    crossScalaVersions := Seq("2.11.12", "2.12.4"),
     libraryDependencies ++= Seq(
-      "org.specs2" %% "specs2-core" % "3.7.2" % "test"
+      "org.specs2" %% "specs2-core" % "4.0.1" % "test"
     ),
     // Maven deploy settings
     publishMavenStyle := true,
     publishArtifact in Test := false,
-    publishTo <<= version { (v: String) =>
+    publishTo := {
       val nexus = "https://oss.sonatype.org/"
-      if (v.trim.endsWith("SNAPSHOT"))
+      if (isSnapshot.value)
         Some("snapshots" at nexus + "content/repositories/snapshots")
       else
         Some("releases" at nexus + "service/local/staging/deploy/maven2")
