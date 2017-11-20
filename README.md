@@ -4,13 +4,13 @@ Naive bayes classifier library. Implemented by Scala.
 This is porting from [ptnplanet/Java-Naive-Bayes-Classifier](https://github.com/ptnplanet/Java-Naive-Bayes-Classifier)
 
 [![Build Status](https://travis-ci.org/tsukaby/naive-bayes-classifier-scala.svg?branch=master)](https://travis-ci.org/tsukaby/naive-bayes-classifier-scala)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.tsukaby/naive-bayes-classifier-scala_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.tsukaby/naive-bayes-classifier-scala_2.11)
-[![Scaladoc](http://javadoc-badge.appspot.com/com.tsukaby/naive-bayes-classifier-scala_2.11.svg?label=scaladoc)](http://javadoc-badge.appspot.com/com.tsukaby/naive-bayes-classifier-scala_2.11)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.tsukaby/naive-bayes-classifier-scala_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.tsukaby/naive-bayes-classifier-scala_2.12)
+[![Scaladoc](http://javadoc-badge.appspot.com/com.tsukaby/naive-bayes-classifier-scala_2.12.svg?label=scaladoc)](http://javadoc-badge.appspot.com/com.tsukaby/naive-bayes-classifier-scala_2.12)
 
 ## Getting Started
 
     libraryDependencies ++= Seq(
-      "com.tsukaby" %% "naive-bayes-classifier-scala" % "0.1.0"
+      "com.tsukaby" %% "naive-bayes-classifier-scala" % "0.2.0"
     )
 
 This library has been published in the [Maven central](http://search.maven.org/#browse|-351387659).
@@ -51,6 +51,6 @@ For example.
 ## License
 
 ```
-Copyright 2015 - 2015 tsukaby.com
+Copyright 2015 - 2017 tsukaby.com
 MIT License
 ```

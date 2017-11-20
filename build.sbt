@@ -4,7 +4,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "com.tsukaby",
     name := "naive-bayes-classifier-scala",
-    version := "0.1.1",
+    version := "0.2.0",
     scalaVersion := "2.12.4",
     crossScalaVersions := Seq("2.11.12", "2.12.4"),
     libraryDependencies ++= Seq(
