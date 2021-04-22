@@ -5,10 +5,10 @@ lazy val root = (project in file(".")).
     organization := "com.tsukaby",
     name := "naive-bayes-classifier-scala",
     version := "0.2.0",
-    scalaVersion := "2.12.4",
-    crossScalaVersions := Seq("2.11.12", "2.12.4"),
+    scalaVersion := "2.13.5",
+    crossScalaVersions := Seq("2.11.12", "2.12.13", "2.13.5"),
     libraryDependencies ++= Seq(
-      "org.specs2" %% "specs2-core" % "4.0.1" % "test"
+      "org.specs2" %% "specs2-core" % "4.5.1" % "test"
     ),
     // Maven deploy settings
     publishMavenStyle := true,
@@ -49,7 +49,6 @@ lazy val root = (project in file(".")).
       "-Ywarn-dead-code",
       "-Ywarn-numeric-widen",
       "-Ywarn-unused",
-      "-Ywarn-unused-import",
       "-Ywarn-value-discard",
       "-Xfatal-warnings",
       "-Yrangepos"
