@@ -223,7 +223,7 @@ abstract class Classifier[T, K <: AnyRef] extends IFeatureProbability[T, K] {
    * @param category The category the features belong to.
    * @param features The features that resulted in the given category.
    */
-  def learn(category: K, features: Traversable[T]): Unit = {
+  def learn(category: K, features: Iterable[T]): Unit = {
     learn(Classification[T, K](features, category))
   }
 
@@ -251,5 +251,5 @@ abstract class Classifier[T, K <: AnyRef] extends IFeatureProbability[T, K] {
    * @param features The features to classify.
    * @return The category most likely.
    */
-  def classify(features: Traversable[T]): Option[Classification[T, K]]
+  def classify(features: Iterable[T]): Option[Classification[T, K]]
 }
