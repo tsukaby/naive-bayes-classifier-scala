@@ -5,7 +5,7 @@ package com.tsukaby.bayes.classifier
  *
  */
 case class Classification[T, K <: AnyRef](
-  features: Traversable[T],
+  features: Iterable[T],
   category: K,
   probability: Float = 0.0f
 )

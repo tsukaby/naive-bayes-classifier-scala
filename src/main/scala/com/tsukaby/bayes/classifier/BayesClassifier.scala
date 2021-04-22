@@ -18,7 +18,7 @@ class BayesClassifier[T, K <: AnyRef] extends Classifier[T, K] {
    * @param category The category to test for.
    * @return The product of all feature probabilities.
    */
-  private def featuresProbabilityProduct(features: Traversable[T], category: K): Float = {
+  private def featuresProbabilityProduct(features: Iterable[T], category: K): Float = {
     features.foldLeft(1.0f)((x: Float, y: T) => x * featureWeighedAverage(y, category))
   }
 
@@ -29,7 +29,7 @@ class BayesClassifier[T, K <: AnyRef] extends Classifier[T, K] {
    * @param category The category to test for.
    * @return The probability that the features can be classified as the category.
    */
-  private def categoryProbability(features: Traversable[T], category: K): Float = {
+  private def categoryProbability(features: Iterable[T], category: K): Float = {
     (categoryCount(category).toFloat / categoriesTotal.toFloat) * featuresProbabilityProduct(features, category)
   }
 
@@ -49,7 +49,7 @@ class BayesClassifier[T, K <: AnyRef] extends Classifier[T, K] {
    * @param features The set of features to use.
    * @return A sorted <code>Set</code> of category-probability-entries.
    */
-  private def categoryProbabilities(features: Traversable[T]): mutable.SortedSet[Classification[T, K]] = {
+  private def categoryProbabilities(features: Iterable[T]): mutable.SortedSet[Classification[T, K]] = {
     val probabilities: mutable.SortedSet[Classification[T, K]] = mutable.TreeSet.empty[Classification[T, K]](ordering)
 
     for (category <- categories) {
@@ -63,7 +63,7 @@ class BayesClassifier[T, K <: AnyRef] extends Classifier[T, K] {
    *
    * @return The category the set of features is classified as.
    */
-  override def classify(features: Traversable[T]): Option[Classification[T, K]] = {
+  override def classify(features: Iterable[T]): Option[Classification[T, K]] = {
     val probabilities: SortedSet[Classification[T, K]] = categoryProbabilities(features)
     probabilities.lastOption
   }
@@ -74,7 +74,7 @@ class BayesClassifier[T, K <: AnyRef] extends Classifier[T, K] {
    *
    * @return The set of categories the set of features is classified as.
    */
-  def classifyDetailed(features: Traversable[T]): Traversable[Classification[T, K]] = {
+  def classifyDetailed(features: Iterable[T]): Iterable[Classification[T, K]] = {
     categoryProbabilities(features)
   }
 }

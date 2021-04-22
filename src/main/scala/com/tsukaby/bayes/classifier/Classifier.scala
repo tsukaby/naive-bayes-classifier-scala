@@ -54,7 +54,7 @@ abstract class Classifier[T, K <: AnyRef] extends IFeatureProbability[T, K] {
    *
    * @param memoryCapacity The new memory capacity.
    */
-  def setMemoryCapacity(memoryCapacity: Int) {
+  def setMemoryCapacity(memoryCapacity: Int): Unit = {
     var i: Int = memoryCapacity
     while (i > memoryCapacity && memoryQueue.nonEmpty) {
       memoryQueue.dequeue()
@@ -71,7 +71,7 @@ abstract class Classifier[T, K <: AnyRef] extends IFeatureProbability[T, K] {
    * @param feature The feature, which count to increase.
    * @param category The category the feature occurred in.
    */
-  def incrementFeature(feature: T, category: K) {
+  def incrementFeature(feature: T, category: K): Unit = {
     val features: mutable.Map[T, Int] = featureCountPerCategory.getOrElse(category, {
       val newMap = mutable.Map[T, Int]()
       featureCountPerCategory.put(category, newMap)
@@ -88,7 +88,7 @@ abstract class Classifier[T, K <: AnyRef] extends IFeatureProbability[T, K] {
    *
    * @param category The category, which count to increase.
    */
-  def incrementCategory(category: K) {
+  def incrementCategory(category: K): Unit = {
     totalCategoryCount.update(category, totalCategoryCount.getOrElse(category, 0) + 1)
   }
 
@@ -100,7 +100,7 @@ abstract class Classifier[T, K <: AnyRef] extends IFeatureProbability[T, K] {
    * @param feature The feature to decrement the count for.
    * @param category The category.
    */
-  def decrementFeature(feature: T, category: K) {
+  def decrementFeature(feature: T, category: K): Unit = {
 
     for {
       features <- featureCountPerCategory.get(category)
@@ -133,7 +133,7 @@ abstract class Classifier[T, K <: AnyRef] extends IFeatureProbability[T, K] {
    *
    * @param category The category, which count to increase.
    */
-  def decrementCategory(category: K) {
+  def decrementCategory(category: K): Unit = {
     for {
       count <- totalCategoryCount.get(category)
     } {
@@ -223,7 +223,7 @@ abstract class Classifier[T, K <: AnyRef] extends IFeatureProbability[T, K] {
    * @param category The category the features belong to.
    * @param features The features that resulted in the given category.
    */
-  def learn(category: K, features: Traversable[T]) {
+  def learn(category: K, features: Iterable[T]): Unit = {
     learn(Classification[T, K](features, category))
   }
 
@@ -233,7 +233,7 @@ abstract class Classifier[T, K <: AnyRef] extends IFeatureProbability[T, K] {
    *
    * @param classification The classification to learn.
    */
-  def learn(classification: Classification[T, K]) {
+  def learn(classification: Classification[T, K]): Unit = {
     for (feature <- classification.features) incrementFeature(feature, classification.category)
     incrementCategory(classification.category)
     memoryQueue.enqueue(classification)
@@ -251,5 +251,5 @@ abstract class Classifier[T, K <: AnyRef] extends IFeatureProbability[T, K] {
    * @param features The features to classify.
    * @return The category most likely.
    */
-  def classify(features: Traversable[T]): Option[Classification[T, K]]
+  def classify(features: Iterable[T]): Option[Classification[T, K]]
 }
